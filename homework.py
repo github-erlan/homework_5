@@ -1,7 +1,7 @@
 import sys, os
 import PyQt6.QtCore
 
-# --- Фикс для macOS: Qt иногда не находит плагины (cocoa) ---
+
 plugin_path = os.path.join(os.path.dirname(PyQt6.QtCore.__file__), "Qt6", "plugins", "platforms")
 os.environ["QT_QPA_PLATFORM_PLUGIN_PATH"] = plugin_path
 
@@ -20,7 +20,7 @@ class ShoppingListApp(QWidget):
 
         layout = QVBoxLayout(self)
 
-        # Поля ввода
+        
         input_layout = QHBoxLayout()
         self.name_input = QLineEdit()
         self.name_input.setPlaceholderText("Название товара")
@@ -30,7 +30,7 @@ class ShoppingListApp(QWidget):
         input_layout.addWidget(self.name_input)
         input_layout.addWidget(self.amount_input)
 
-        # Кнопки
+
         button_layout = QHBoxLayout()
         self.add_btn = QPushButton("Добавить")
         self.edit_btn = QPushButton("Редактировать")
@@ -41,20 +41,20 @@ class ShoppingListApp(QWidget):
         for b in [self.add_btn, self.edit_btn, self.delete_btn, self.toggle_btn, self.clear_btn]:
             button_layout.addWidget(b)
 
-        # Список покупок
+
         self.list_widget = QListWidget()
 
-        # Статус-бар
+
         self.status_bar = QStatusBar()
         self.update_status()
 
-        # Сборка интерфейса
+
         layout.addLayout(input_layout)
         layout.addLayout(button_layout)
         layout.addWidget(self.list_widget)
         layout.addWidget(self.status_bar)
 
-        # Сигналы
+
         self.add_btn.clicked.connect(self.add_item)
         self.edit_btn.clicked.connect(self.edit_item)
         self.delete_btn.clicked.connect(self.delete_item)
